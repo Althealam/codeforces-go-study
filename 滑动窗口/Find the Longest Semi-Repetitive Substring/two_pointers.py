@@ -9,6 +9,7 @@ class Solution:
                 count+=1
             while count>1:
                 if s[left]==s[left+1]:
-                    left+=1
+                    count-=1
+                left+=1
             ans = max(ans, right-left+1)
         return ans
