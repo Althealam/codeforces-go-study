@@ -7,7 +7,7 @@ class Solution:
                 str_n[i:] = '9'*(len(str_n)-i)
         return int(''.join(str_n))
 
-n = 332
+n = 120
 sol = Solution()
 res = sol.monotoneIncreasingDigits(n)
 print(res)
