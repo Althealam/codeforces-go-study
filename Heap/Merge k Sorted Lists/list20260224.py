@@ -1,5 +1,5 @@
 # Definition for singly-linked list.
-
+# 假设K是链表的总个数，N是所有链表中的节点总数，链表的平均长度是L=N/K
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -13,11 +13,17 @@ class Solution:
         elif n==1:
             return lists[0]
         mid = n//2
-        left = self.mergeTwoLists(lists[:mid])
+        left = self.mergeTwoLists(lists[:mid]) 
         right = self.mergeTwoLists(lists[mid:])
+        # time: O(Nlogk)
+        # total number of levels: O(logk)
+        # total number of nodes for each level: O(N)
+        # space: O(logk)
         return self.mergeKLists(left, right)
     
     def mergeTwoLists(self, list1, list2):
+        # time: O(n1+n2), n1=len(list1), n2=len(list2)
+        # space: O(1)
         dummy_node = ListNode()
         cur = dummy_node
         while list1 and list2:
