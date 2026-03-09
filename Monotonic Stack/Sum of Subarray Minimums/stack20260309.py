@@ -22,7 +22,7 @@ class Solution:
         previous_smaller = [-1]*len(arr) # increasing stack
         next_smaller = [len(arr)]*len(arr) # decreasing stack
 
-        # find the next smaller（递减栈）
+        # find the next smaller
         stack = []
         for i in range(len(arr)):
             # current stack[-1] find the next smaller element, which is arr[i]
@@ -31,11 +31,11 @@ class Solution:
                 next_smaller[index] = i
             stack.append(i)
         
-        # find the previous smaller（递增栈）
+        # find the previous smaller
         stack = []
         for i in range(len(arr)):
-            # if arr[stack[-1]]>=arr[i], it means that arr[stack[-1]] can not be the previous smaller element for every element after i
-            while len(stack)!=0 and arr[stack[-1]]>=arr[i]:
+            # current element find the previous smaller element, which is arr[stack[-1]]
+            while len(stack)!=0 and arr[stack[-1]]>arr[i]:
                 stack.pop()
             previous_smaller[i] = stack[-1] if stack else -1
             stack.append(i)
@@ -45,3 +45,11 @@ class Solution:
         for i in range(len(arr)):
             count+=arr[i]*(i-previous_smaller[i])*(next_smaller[i]-i)
         return count%MOD
+        
+            
+
+
+
+
+
+        
