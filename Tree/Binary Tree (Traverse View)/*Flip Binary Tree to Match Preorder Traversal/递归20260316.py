@@ -16,8 +16,8 @@
 
 class Solution:
     def __init__(self):
-        self.flipped = []
         self.index = 0
+        self.flipped = [] # 存储反转的节点值
 
     def flipMatchVoyage(self, root: Optional[TreeNode], voyage: List[int]) -> List[int]:
         if self.traversal(root, voyage):
@@ -25,15 +25,15 @@ class Solution:
         return [-1]
     
     def traversal(self, root, voyage):
-        if root is None:
+        if not root:
             return True
-        if root.val!=voyage[self.index]:
+        if root.val!=voyage[self.index]: # 无法反转
             return False
-        else:
-            self.index+=1
-            if root.left and root.left.val!=voyage[self.index]: # 左孩子不是下一个值，因此需要执行反转root的操作
-                self.flipped.append(root.val)
-                # 开始执行反转操作，先遍历右子树再遍历左子树
-                return self.traversal(root.right, voyage) and self.traversal(root.left, voyage)
-            else:
-                return self.traversal(root.left, voyage) and self.traversal(root.right, voyage)
+        # 可以反转，则跳转到下一个节点
+        self.index +=1
+        # 如果左孩子存在，并且左孩子不是下一个应该访问的节点，则需要反转
+        if root.left and self.index<len(voyage) and root.left.val!=voyage[self.index]: 
+            self.flipped.append(root.val)
+            return self.traversal(root.right, voyage) and self.traversal(root.left, voyage)
+        return self.traversal(root.left, voyage) and self.traversal(root.right, voyage)
+        
