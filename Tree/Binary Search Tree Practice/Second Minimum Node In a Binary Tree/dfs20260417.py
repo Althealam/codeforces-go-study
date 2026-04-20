@@ -14,7 +14,7 @@
 #（2）返回值含义：以node为根节点的子树中，严格大于最小值node.val的最小节点值
 #（3）终止条件
 # - 如果当前节点为空，则返回-1（说明已经找完了整颗子树）
-# - 如果node.val>root.val，说明已经找到了，则直接返回node.val
+# - 如果node.val>root.val，说明已经找到了，则直接返回 node.val
 #（4）单层递归的逻辑
 # 注意：node.val和root.val只有两种情况：node.val<root.val或者node.val = root.val
 # 如果node.val==root.val，说明要去左右子树找
