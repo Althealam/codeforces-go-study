@@ -1,10 +1,12 @@
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
-        max_cover = 0
+    def canJump(self, nums: list[int]) -> bool:
+        max_range = 0
+        cur_range = 0
         for i in range(len(nums)):
-            max_cover = max(i+nums[i], max_cover)
-            if max_cover>=len(nums)-1:
+            cur_range = i+nums[i]
+            max_range = max(max_range, cur_range)
+            if max_range>=len(nums)-1: # 到达最后一个下标就成功
                 return True
-            if i==max_cover:
+            if i>=max_range:
                 return False
         return False
